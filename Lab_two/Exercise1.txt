@@ -1,0 +1,31 @@
+QUESTION_ONE: setImmediate() and setTimeout()
+
+setImmediate(): is designed to execute a script once the current poll phase completes. 
+This callbacks are invoked at check phase of the event loop.
+setTimeout(): schedules a script to be run after a minimum threshold in ms has elapsed.
+The main advantage of using setImmediate() over setTimeout() is setImmediate()
+will always be executed before any timers if scheduled within an I/O cycle, 
+independently of how many timers are present.
+ 
+QUESTION_TWO: setImmediate() and process.nextTick()
+
+process.nextTick() is not part of the event loop.Instead, the nextTickQueue will be processed after the 
+current operation completes,regardless of the current phase of the event loop.
+
+*process.nextTick(): fires immediately on the same phase
+*setImmediate(): fires on the following iteration or 'tick' of the event loop
+
+It is recommended to use setImmediate() in all cases because it's easier to reason about 
+and it leads to code that's compatible with a wider variety of environments.
+
+QUESTION_THREE: Core modules that node provides by default
+  assert
+  buffer
+  child_process
+  cluster
+  crypto
+  stream
+  domain
+  events  
+  http
+  https

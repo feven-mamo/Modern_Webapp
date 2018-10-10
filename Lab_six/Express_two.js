@@ -24,7 +24,6 @@ app.use(morgan('combined'));
 app.use(express.urlencoded({ extended: true }));
 app.use(validator());
 
-
 var router = express.Router();   
 
 router.use(function (req, res, next) {
@@ -61,7 +60,7 @@ router.route('/grades')
     .get((req, resp) => {
         console.log('size: ' + gradesDB.length);
         if (gradesDB.length == 0)
-            resp.send(new Error());
+        return resp.send(new Error());
         resp.json(gradesDB);
     })
 router.route('/grades/:grade_id')
@@ -74,7 +73,7 @@ router.route('/grades/:grade_id')
         for (let g of gradesDB) {
             if (g.id == id) grade = g;
         }
-        if (!grade) resp.send(new Error('No grade with such id'));
+        if (!grade) return resp.send(new Error('No grade with such id'));
         resp.json(grade);
     })
     .put((req, resp) => {
@@ -83,7 +82,7 @@ router.route('/grades/:grade_id')
         for (let g of gradesDB) {
             if (g.id == id) grade = g;
         }
-        if (!grade) resp.send(new Error('No grade with such id'));
+        if (!grade) return resp.send(new Error('No grade with such id'));
         grade.name = name;
         grade.course = course;
         grade.grade = gradeNew;
@@ -95,7 +94,7 @@ router.route('/grades/:grade_id')
         for (let g of gradesDB) {
             if (g.id == id) grade = g;
         }
-        if (!grade) resp.send(new Error('No grade with such id'));
+        if (!grade) return resp.send(new Error('No grade with such id'));
         gradesDB.pop(grade);
         resp.json({ message: 'deleting done successfully' });
     });

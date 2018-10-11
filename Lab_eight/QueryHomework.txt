@@ -1,0 +1,26 @@
+1. db.restaurant.find().pretty()    //query to display all the restaurant in the collection
+2. db.restaurant.find({},{ "grades": 0, "address": 0 }).pretty()    //query to display the fields restaurant_id, name, district and cuisine
+3. db.restaurant.find({},{ "_id": 0, "grades": 0, "address": 0 }).pretty()  //field _id excluded
+4. db.restaurant.find({},{ "_id": 0, "grades": 0, "address.building": 0, "address.coord": 0, "address.street": 0 }).pretty()
+    //displays zip code from address field
+5. db.restaurant.find({"district":"Bronx" }).pretty()   //all restaurants in the Bronx district
+6. db.restaurant.find({"district":"Bronx" }).limit(5).pretty()   //limit the number of restaurant displayed to five
+7. db.restaurant.find({"district":"Bronx" }).skip(5).limit(5).pretty()  //skip the first five and limit to five after that
+8. db.restaurant.find({"address.coord": {$lt: -95.754168} }).pretty()   //restaurants at coord less than  -95.754168
+9. db.restaurant.find({$and: [{"cuisine":{$ne: "American "}},{"grades.score": { $gt: 70}},{"address.coord": {$lt: -65.754168}}]}).pretty
+
+10. db.restaurants.find({name:{$regex:'^wil',$options:'i'}},{restaurant_id:1,name:1,district:1,cusine:1}).pretty()
+11. db.restaurants.find({name:{$regex:'ces$',$options:'i'}},{restaurant_id:1,name:1,district:1,cusine:1}).pretty()
+12. db.restaurants.find({name:{$regex:'.*Reg.*',$options:'i'}},{restaurant_id:1,name:1,district:1,cusine:1}).pretty()
+13. db.restaurants.find({district:"Bronx",cuisine:{$in:["American ","Chinese"]}}).pretty()
+14. db.restaurants.find({district:{$in:['Bronx', 'Brooklyn', 'Queens', 'StatenIsland']}},{_id:0,restaurant_id:1,name:1,district:1,cuisine:1}).pretty()
+15. db.restaurants.find({district:{$nin:['Bronx', 'Brooklyn', 'Queens', 'StatenIsland']}},{_id:0,restaurant_id:1,name:1,district:1,cuisine:1}).pretty()
+16. db.restaurants.find({'grades.score':{$lte:10}},{_id:0,restaurant_id:1,name:1,district:1,cuisine:1}).pretty()
+17. db.restaurants.find({'address.coord.1':{$lte:52,$gt:42}},{_id:0,restaurant_id:1,name:1,address:1}).pretty()
+18. db.restaurants.find().sort({name:1}).pretty()
+19. db.restaurants.find().sort({name:-1}).pretty()
+20. db.restaurants.find().sort({cuisine:1 , district:-1}).pretty()
+21. db.restaurants.find({'address.street': {$exists:true}}).count() //all docs that ve street
+      db.restaurants.find().count() // shows the total number of docs
+22. db.restaurants.find({'address.coord': {$type:'double'}}).pretty()
+23. db.restaurants.find({'name': {$regex:'^mad',$options:'i'}},{_id:0,name:1,district:1,'address.coord':1,cuisine:1}).pretty()

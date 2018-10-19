@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-olympics',
+  selector: 'app-p404',
   template: `
-    <h3>Games</h3>
-    <app-games></app-games>    
+    <p>
+       Page Not found !
+    </p>
   `,
   styles: []
 })
-export class OlympicsComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
   }
+
 }
-
-

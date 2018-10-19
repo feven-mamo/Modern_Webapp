@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DbService } from '../dbservice.service';
+import { DataService } from '../db.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailsGuard implements CanActivate {
 
-  constructor(private router: Router, private dataService: DbService){}
+  constructor(private router: Router, private dataService: DataService){}
 
   canActivate(
     next: ActivatedRouteSnapshot,

@@ -1,28 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
-import { PagenotfoundComponent } from './pagenotfound.component';
-import { OlympicsComponent } from './olympics/olympics.component';
+import { OlympicsModule, OLYMPIC_ROUTES } from './olympics/olympics.module';
+import { NotFoundComponent } from './notFound.component';
+
 const MY_ROUTES: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'olympics', loadChildren: './olympics/olympics.module#OlympicsModule'},
-  {path: '404', component: PagenotfoundComponent},
-  {path: '**', redirectTo: '404'}
+  {path: 'olympics', children: OLYMPIC_ROUTES},
+  {path: 'notFound', component: NotFoundComponent},
+  {path: '**', redirectTo: 'notFound'}
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PagenotfoundComponent,
-    OlympicsComponent,     
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
+    OlympicsModule,
     RouterModule.forRoot(MY_ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -4,12 +4,12 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-p404',
   template: `
     <p>
-      404 Not found!
+       Page Not found !
     </p>
   `,
   styles: []
 })
-export class PagenotfoundComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
 
   constructor() { }
 

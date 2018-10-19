@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DbService } from '../dbservice.service';
+import { DataService } from '../db.service';
 
 @Component({
   selector: 'app-games',
@@ -13,7 +13,7 @@ import { DbService } from '../dbservice.service';
 export class GamesComponent implements OnInit {
 
   private games = [];
-  constructor(private dataService: DbService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.games = this.dataService.getData();

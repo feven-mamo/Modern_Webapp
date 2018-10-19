@@ -1,18 +1,17 @@
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DbService {
+export class DataService {
 
   private data = [
     {
       _id: 1,
       game: {
-        name: 'Rowing',
+        name: 'Basketball',
         schedule: [
-          {stadium: 'MNS', date: '10/20/2018', time: '17:00'}
+          {stadium: 'Zeway', date: '1/2/2000', time: '8:00'}
         ]
       }
     },
@@ -21,7 +20,7 @@ export class DbService {
       game: {
         name: 'Football',
         schedule: [
-          {stadium: 'NNM', date: '10/20/2018', time: '18:00'}
+          {stadium: 'Gondar', date: '1/2/2017', time: '3:00'}
         ]
       }
     }
@@ -31,10 +30,10 @@ export class DbService {
   getData(){
     return this.data;
   }
-  getGame(id: number){
+  getGameSchedule(id: number){
     for(let g of this.data){
       if(g._id == id) {
-        return g;
+        return g.game.schedule;
       }
     }
     return {};
@@ -48,3 +47,5 @@ export class DbService {
     return false;
   }
 }
+
+  
